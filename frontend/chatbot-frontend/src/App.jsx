@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axiosInstance from "./axiosInstance";
+import axios from "axios";
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -13,7 +13,7 @@ function App() {
     setInput("");
 
     try {
-      const response = await axiosInstance.post("/chat", { message: input });
+      const response = await axios.post("http://localhost:5000/chat", { message: input });
 
       setMessages([...newMessages, { text: `AI: ${response.data.reply}`, sender: "bot" }]);
     } catch (error) {
@@ -25,7 +25,7 @@ function App() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-900 text-white">
       <div className="w-full max-w-md p-6 bg-gray-800 rounded-lg shadow-lg flex flex-col">
-        <h1 className="text-2xl font-bold text-center mb-4">AI ChatBot</h1>
+        <h1 className="text-2xl font-bold text-center mb-4">AI Chatbot</h1>
         <div className="h-72 overflow-y-auto p-4 border border-gray-700 rounded flex flex-col space-y-2">
           {messages.map((msg, index) => (
             <div key={index} className="text-left p-2 rounded bg-gray-700">
