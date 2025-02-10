@@ -1,5 +1,5 @@
 import { useState } from "react";
-import axios from "axios";
+import axiosInstance from "./axiosInstance";
 
 function App() {
   const [messages, setMessages] = useState([]);
@@ -13,7 +13,7 @@ function App() {
     setInput("");
 
     try {
-      const response = await axios.post("https://ai-chat-bot-backend-peach.vercel.app/chat", { message: input });
+      const response = await axiosInstance.post("/chat", { message: input });
 
       setMessages([...newMessages, { text: `AI: ${response.data.reply}`, sender: "bot" }]);
     } catch (error) {
