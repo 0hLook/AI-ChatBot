@@ -13,7 +13,7 @@ function App() {
     setInput("");
 
     try {
-      const response = await axios.post("http://localhost:5000/chat", { message: input });
+      const response = await axios.post("https://ai-chat-bot-backend-peach.vercel.app/chat", { message: input });
 
       setMessages([...newMessages, { text: `AI: ${response.data.reply}`, sender: "bot" }]);
     } catch (error) {

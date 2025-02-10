@@ -27,6 +27,10 @@ const openai = new OpenAI({
   baseURL: "https://openrouter.ai/api/v1",
 });
 
+app.get("/", (req, res) => {
+  res.json({ data: "Backend Works" });
+});
+
 app.post("/chat", async (req, res) => {
   const { message } = req.body;
   console.log("User Message:", message);
